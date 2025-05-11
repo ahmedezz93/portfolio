@@ -32,7 +32,7 @@ Route::prefix('site')->group(function () {
 
     Route::prefix('personalInfo')->name('personalInfo.')->controller(PersonalInfoController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+        Route::post('/createOrUpdate', 'createOrUpdate')->name('createOrUpdate');
 
     });
 

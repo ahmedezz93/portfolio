@@ -31,80 +31,60 @@
             /* جعل الصندوق بحجم النص فقط */
             width: 100%;
         }
-/*
-* style for input color
-*/
+
+        /*
+        * style for input color
+        */
         .color-picker-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-}
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
 
-.color-input {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
+        .color-input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
 
-.color-preview {
-    padding: 0;
-    overflow: hidden;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-    border-left: none;
-}
+        .color-preview {
+            padding: 0;
+            overflow: hidden;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            border-left: none;
+        }
 
-.color-picker {
-    width: 100%;
-    height: 100%;
-    border: none;
-    cursor: pointer;
-    background: transparent;
-    padding: 0;
-}
-
+        .color-picker {
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            padding: 0;
+        }
     </style>
 
 @endsection
 
-@section('title',__('settings.settings'))
+@section('title', 'Personal Info')
 
 @section('content')
     <div class="card mb-4">
 
         <div class="alert alert-info" role="alert">
-            <h5 class="card-header1">{{ __('settings.Website Info') }}</h5>
+            <h5 class="card-header1">Personal Info</h5>
         </div>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
-            <form class="card-body" action="{{ route('admin.settings.store') }}" method="post" enctype="multipart/form-data">
+            <form class="card-body" action="{{route('site.personalInfo.createOrUpdate')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">
 
-                    <h5 class="text-center">{{ __('settings.Website Info') }}</h5>
-                    <div class="col-md-6">
-                        <label class="form-label"
-                            for="multicol-Website Name Arabic">First Name</label>
-                        <input type="text" id="multicol-Website-Name-Arabic" name="first_name" class="form-control"
-                            value="{{ old('first_name', isset($settings) ? $settings->first_name : '') }}" />
-                        @error('first_name')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label"
-                            for="multicol-Website Name Arabic">Last Name</label>
-                        <input type="text" id="multicol-Website-Name-Arabic" name="last_name" class="form-control"
-                            value="{{ old('last_name', isset($settings) ? $settings->last_name : '') }}" />
-                        @error('last_name')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
+                    <h5 class="text-center">Personal Info</h5>
                     <div class="col-md-6 form-group">
                         <div>
                             <label class="form-label" for="formFile">Image</label>
-                            <small class="text-muted">Recommended size: 512px × 512px</small>
+                            <small class="text-muted">Recommended size: </small>
                             <input class="form-control" type="file" name="image" id="formFile" />
                             @error('image')
                                 <div class="text-danger">{{ $message }}</div>
@@ -117,8 +97,16 @@
 
 
                     <div class="col-md-6">
-                        <label class="form-label"
-                            for="multicol-Website Name Arabic">Date Of Birth</label>
+                        <label class="form-label" for="multicol-Website Name Arabic">First Name</label>
+                        <input type="text" id="multicol-Website-Name-Arabic" name="first_name" class="form-control"
+                            value="{{ old('first_name', isset($settings) ? $settings->first_name : '') }}" />
+                        @error('first_name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-Website Name Arabic">Last Name</label>
                         <input type="text" id="multicol-Website-Name-Arabic" name="last_name" class="form-control"
                             value="{{ old('last_name', isset($settings) ? $settings->last_name : '') }}" />
                         @error('last_name')
@@ -126,9 +114,20 @@
                         @enderror
                     </div>
 
+
+
+                    <!-- Date Field -->
                     <div class="col-md-6">
-                        <label class="form-label"
-                            for="multicol-Website Nationality">Nationality</label>
+                        <label class="form-label" for="date">{{ __('projects.Date') }}</label>
+                        <input type="date" id="date" name="date" class="form-control"
+                            value="{{ old('date') }}" />
+                        @error('date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-Website Nationality">Nationality</label>
                         <input type="text" id="multicol-Website-Nationality" name="nationality" class="form-control"
                             value="{{ old('nationality', isset($settings) ? $settings->nationality : '') }}" />
                         @error('nationality')
@@ -137,16 +136,20 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label"
-                            for="multicol-Website Freelance">Freelance</label>
-                        <input type="text" id="multicol-Website-Freelance" name="nationality" class="form-control"
-                            value="{{ old('nationality', isset($settings) ? $settings->nationality : '') }}" />
-                        @error('nationality')
+                        <label class="form-label" for="multicol-Website-Freelance">Freelance</label>
+                        <select id="multicol-Website-Freelance" name="freelance" class="form-control">
+                            <option value="">Select Option</option>
+                            <option value="Yes"
+                                {{ old('freelance', isset($settings) ? $settings->freelance : '') == 'Yes' ? 'selected' : '' }}>
+                                Yes</option>
+                            <option value="No"
+                                {{ old('freelance', isset($settings) ? $settings->freelance : '') == 'No' ? 'selected' : '' }}>
+                                No</option>
+                        </select>
+                        @error('freelance')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-Website Phone">Phone</label>
                         <input type="text" id="multicol-Website Phone" name="phone" class="form-control"
@@ -183,7 +186,8 @@
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-spoken_languages">Spoken Langauages</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" id="multicol-spoken_languages" name="spoken_languages" class="form-control"
+                            <input type="text" id="multicol-spoken_languages" name="spoken_languages"
+                                class="form-control"
                                 value="{{ old('spoken_languages', isset($settings) ? $settings->spoken_languages : '') }}"
                                 aria-label="" aria-describedby="multicol-spoken_languages2" />
                         </div>
@@ -196,14 +200,27 @@
                         <label class="form-label" for="multicol-linkedin">LinkedIn</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-linkedin" name="linkedin" class="form-control"
-                                value="{{ old('linkedin', isset($settings) ? $settings->linkedin : '') }}"
-                                aria-label="" aria-describedby="multicol-linkedin2" />
+                                value="{{ old('linkedin', isset($settings) ? $settings->linkedin : '') }}" aria-label=""
+                                aria-describedby="multicol-linkedin2" />
                         </div>
                         @error('linkedin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    <div class="col-md-6 form-group">
+                        <div>
+                            <label class="form-label" for="formFile">Upload Cv</label>
+                            <small class="text-muted">Recommended size: </small>
+                            <input class="form-control" type="file" name="cv" id="formFile" />
+                            @error('cv')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        @if (isset($settings) && $settings->cv_url)
+                            <img src="{{ $settings->cv_url ?? '' }}" class="icon-preview" alt="image">
+                        @endif
+                    </div>
 
                     <br><br>
                     <h5 class="text-center">{{ __('settings.Videos & Icons & Logo') }}</h5>
@@ -267,7 +284,7 @@
                         @endif
                     </div> --}}
                 </div>
-                <div class="pt-4" >
+                <div class="pt-4">
                     <button type="submit" class="btn btn-success me-sm-3 me-1">{{ __('general.save') }}</button>
                     <button type="reset" class="btn btn-label-danger ">{{ __('general.reset') }}</button>
                 </div>

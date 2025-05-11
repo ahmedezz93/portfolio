@@ -19,4 +19,12 @@ class PersonalInfo extends Model
         return asset('storage/images/personalInfo/' . $this->image);
     }
 
+        public function getCvUrlAttribute()
+    {
+        if (!$this->cv) {
+            return " ";
+        }
+        return asset('storage/images/personalInfo/' . $this->cv);
+    }
+
 }
