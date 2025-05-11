@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\admin\AboutMe\PersonalInfoController;
+use App\Http\Controllers\site\HomeController;
+use App\Http\Controllers\site\TeamsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+        Route::get('/', HomeController::class)->name('home');
+
+Route::prefix('site')->group(function () {
+    Route::prefix('ourTeam')->name('ourTeam.')->controller(TeamsController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+
+    });
+
+    Route::prefix('personalInfo')->name('personalInfo.')->controller(PersonalInfoController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+
+    });
+
 });
-Route::get('getCv',[DashboardController::class,'getDownload'])->name('getCv');
+
+    });

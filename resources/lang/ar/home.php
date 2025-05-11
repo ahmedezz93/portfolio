@@ -1,0 +1,60 @@
+<?php
+
+return [
+    'home' => 'الرئيسية',
+    'Website Info' => 'معلومات الموقع',
+    'first_zone_image' => 'صورة الجزء الأول',
+    'first_zone_title_ar' => 'عنوان الجزء الأول (عربي)',
+    'first_zone_title_en' => 'عنوان الجزء الأول (إنجليزي)',
+    'first_zone_description_ar' => 'وصف الجزء الأول (عربي)',
+    'first_zone_description_en' => 'وصف الجزء الأول (إنجليزي)',
+
+    'second_zone_image' => 'صورة الجزء الثاني',
+    'second_zone_title_ar' => 'عنوان الجزء الثاني (عربي)',
+    'second_zone_title_en' => 'عنوان الجزء الثاني (إنجليزي)',
+    'second_zone_mini_description_ar' => 'وصف صغير للقسم الثاني (عربي)',
+    'second_zone_mini_description_en' => 'وصف صغير للقسم الثاني (إنجليزي)',
+    'second_zone_item_1_description_ar' => 'وصف العنصر الأول بالجزء الثاني (عربي)',
+    'second_zone_item_1_description_en' => 'وصف العنصر الأول بالجزء الثاني (إنجليزي)',
+    'second_zone_item_2_description_ar' => 'وصف العنصر الثاني بالجزء الثاني (عربي)',
+    'second_zone_item_2_description_en' => 'وصف العنصر الثاني بالجزء الثاني (إنجليزي)',
+    'second_zone_item_3_description_ar' => 'وصف العنصر الثالث بالجزء الثاني (عربي)',
+    'second_zone_item_3_description_en' => 'وصف العنصر الثالث بالجزء الثاني (إنجليزي)',
+
+    'third_zone_image' => 'صورة الجزء الثالث',
+    'third_zone_title_ar' => 'عنوان الجزء الثالث (عربي)',
+    'third_zone_title_en' => 'عنوان الجزء الثالث (إنجليزي)',
+    'third_zone_mini_description_ar' => 'وصف صغير للقسم الثالث (عربي)',
+    'third_zone_mini_description_en' => 'وصف صغير للقسم الثالث (إنجليزي)',
+    'first_part' => 'الجزء الاول',
+    'second_part' => 'الجزء الثانى',
+    'third_part' =>'الجزء الثالث',
+    'third_zone_image_item_one' => 'صورة العنصر الأول',
+    'third_zone_title_item_one' => 'عنوان العنصر الأول (ارقام فقط)',
+    'third_zone_mini_description_item_one_ar' => 'الوصف المختصر للعنصر الأول (بالعربية)',
+    'third_zone_mini_description_item_one_en' => 'الوصف المختصر للعنصر الأول (بالإنجليزية)',
+
+    'third_zone_title_item_two' => 'عنوان العنصر الثاني (ارقام فقط)',
+    'third_zone_mini_description_item_two_ar' => 'الوصف المختصر للعنصر الثاني (بالعربية)',
+    'third_zone_mini_description_item_two_en' => 'الوصف المختصر للعنصر الثاني (بالإنجليزية)',
+
+    'third_zone_title_item_three' => 'عنوان العنصر الثالث (ارقام فقط)',
+    'third_zone_mini_description_item_three_ar' => 'الوصف المختصر للعنصر الثالث (بالعربية)',
+    'third_zone_mini_description_item_three_en' => 'الوصف المختصر للعنصر الثالث (بالإنجليزية)',
+
+    'third_zone_title_item_four' => 'عنوان العنصر الرابع (ارقام فقط)',
+    'third_zone_mini_description_item_four_ar' => 'الوصف المختصر للعنصر الرابع (بالعربية)',
+    'third_zone_mini_description_item_four_en' => 'الوصف المختصر للعنصر الرابع (بالإنجليزية)',
+
+    'key_highlight_1' => 'نقطة بارزة',
+    'key_highlight_2' => 'ميزة رئيسية',
+    'key_highlight_3' => 'إنجاز هام',
+    'key_highlight_4' => 'تفصيل مهم',
+     'fourth_part' => 'الجزء الرابع',
+    'fourth_zone_image' => 'صورة الجزء الرابع',
+    'fourth_zone_title_ar' => 'عنوان الجزء الرابع (عربي)',
+    'fourth_zone_title_en' => 'عنوان الجزء الرابع (إنجليزي)',
+    'fourth_zone_description_ar' => 'وصف الجزء الرابع (عربي)',
+    'fourth_zone_description_en' => 'وصف الجزء الرابع (إنجليزي)',
+
+];

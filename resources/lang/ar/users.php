@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'manage_users' => 'إدارة المستخدمين',
+    'search_by_name' => 'البحث بالاسم',
+    'items_per_page' => 'العناصر في الصفحة',
+    'add_new_user' => 'إضافة مستخدم جديد',
+    'delete_all' => 'حذف الكل',
+    'name_ar' => 'الاسم باللغة العربية',
+    'name' => 'الاسم',
+    'name_en' => 'الاسم باللغة الإنجليزية',
+    'email' => 'البريد الإلكتروني',
+    'image' => 'الصورة',
+    'actions' => 'الإجراءات',
+    'edit' => 'تعديل',
+    'delete' => 'حذف',
+    'delete_item' => 'حذف العنصر',
+    'confirm_delete' => 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
+    'confirm_delete_button' => 'تأكيد الحذف',
+    'cancel' => 'إلغاء',
+    'search_button' => 'بحث',
+    'password'=> 'كلمة السر',
+    'create_user' => 'إنشاء  مستخدم',
+    'edit_user' => 'تعديل المستخدم',
+];
