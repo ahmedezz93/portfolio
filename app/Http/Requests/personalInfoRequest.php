@@ -24,6 +24,7 @@ class personalInfoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'mini_description' => 'required|string|max:1000',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
@@ -34,8 +35,8 @@ class personalInfoRequest extends FormRequest
             'email' => 'required|email|max:255',
             'spoken_languages' => 'required|string|max:255',
             'linkedin' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'cv' => 'required|file|mimes:pdf,doc,docx|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'cv' => 'nullable|file|mimes:pdf,doc,docx|',
         ];
     }
 

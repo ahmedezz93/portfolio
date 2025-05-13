@@ -19,23 +19,21 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
         Route::get('/', HomeController::class)->name('home');
 
-Route::prefix('site')->group(function () {
-    Route::prefix('ourTeam')->name('ourTeam.')->controller(TeamsController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+        Route::prefix('site')->group(function () {
+            Route::prefix('ourTeam')->name('ourTeam.')->controller(TeamsController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+            });
 
-    });
-
-    Route::prefix('personalInfo')->name('personalInfo.')->controller(PersonalInfoController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/createOrUpdate', 'createOrUpdate')->name('createOrUpdate');
-
-    });
-
-});
-
-    });
+            Route::prefix('personalInfo')->name('personalInfo.')->controller(PersonalInfoController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/createOrUpdate', 'createOrUpdate')->name('createOrUpdate');
+            });
+        });
+    }
+);

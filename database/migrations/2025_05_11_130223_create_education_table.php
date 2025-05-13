@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('degree')->nullable();
             $table->string('institution')->nullable();
-            $table->date('start_year')->nullable();
-            $table->date('end_year')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

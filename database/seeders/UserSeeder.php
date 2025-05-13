@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             "name"=>"superAdmin",
             "email"=>"admin@gmail.com",
             'type'=>'superadmin',
-            "password"=>bcrypt('123456789'),
+            "password"=>123456789,
         ]);
     }
 }

@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\AboutController;
+use App\Http\Controllers\admin\AboutMe\AchievementController;
+use App\Http\Controllers\admin\AboutMe\EducationController;
+use App\Http\Controllers\admin\AboutMe\ExperienceController;
+use App\Http\Controllers\admin\AboutMe\SkillController;
 use App\Http\Controllers\admin\ArticlesController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\ContactUsController;
@@ -58,46 +62,20 @@ Route::group(
                 Route::get('create', [homeController::class, 'create'])->name('create');
                 Route::post('updateOrCreate', [homeController::class, 'updateOrCreate'])->name('updateOrCreate');
             });
-            //Services
-            Route::resource('services', ServicesController::class);
-            Route::post('services/destroy_all', [ServicesController::class, 'destroyAll'])->name('services.destroy.all');
+            //experiences
+            Route::resource('experiences', ExperienceController::class);
+            Route::post('experiences/destroy_all', [ExperienceController::class, 'destroyAll'])->name('experiences.destroy.all');
 
-            //projects
-            Route::resource('projects', ProjectsController::class);
-            Route::post('projects/destroy_all', [ProjectsController::class, 'destroyAll'])->name('projects.destroy.all');
+            //educations
+            Route::resource('educations', EducationController::class);
+            Route::post('educations/destroy_all', [EducationController::class, 'destroyAll'])->name('educations.destroy.all');
 
-            //articles
-
-            Route::resource('articles', ArticlesController::class);
-            Route::post('articles/destroy_all', [ArticlesController::class, 'destroyAll'])->name('articles.destroy.all');
-
-            // faqs
-            Route::prefix('faqs')->as('faqs.')->controller(FaqsController::class)->group(function () {
-                Route::get('index/{id}', 'index')->name('index');
-                Route::get('create/{id}', 'create')->name('create');
-                Route::post('store/{id}', 'store')->name('store');
-                Route::get('edit/{id}', 'edit')->name('edit');
-                Route::post('update/{id}', 'update')->name('update');
-                Route::post('destroy_all', 'destroyAll')->name('destroy.all');
-                Route::delete('destroy/{id}', 'destroy')->name('destroy');
-            });
-            // sections faqs
-            //   Route::prefix('sectionFaqs')->name('sectionFaqs.')->controller(SectionsFaqsController::class)->group(function () {
-            //     Route::get('index/', 'index')->name('index');
-            //     Route::get('create/', 'create')->name('create');
-            //     Route::post('store/', 'store')->name('store');
-            //     Route::get('edit/{id}', 'edit')->name('edit');
-            //     Route::post('update/{id}', 'update')->name('update');
-            //     Route::post('destroy_all', 'destroyAll')->name('destroy.all');
-            //     Route::delete('destroy/{id}', 'destroy')->name('destroy');
-            // });
-            Route::resource('sectionFaqs', SectionsFaqsController::class);
-            Route::post('sectionFaqs/destroy_all', [SectionsFaqsController::class, 'destroyAll'])->name('sectionFaqs.destroy.all');
-
-
-            Route::resource('teams', TeamsController::class);
-            Route::post('teams/destroy_all', [TeamsController::class, 'destroyAll'])->name('teams.destroy.all');
-
+            //skills
+            Route::resource('skills', SkillController::class);
+            Route::post('skills/destroy_all', [SkillController::class, 'destroyAll'])->name('skills.destroy.all');
+            //achievements
+            Route::resource('achievements', AchievementController::class);
+            Route::post('achievements/destroy_all', [AchievementController::class, 'destroyAll'])->name('achievements.destroy.all');
             Route::prefix('contacts')->as('contacts.')->controller(ContactUsController::class)->group(function () {
                 Route::get('index/', 'index')->name('index');
                 Route::post('destroy_all', 'destroyAll')->name('destroy.all');
@@ -105,18 +83,7 @@ Route::group(
             });
 
 
-            Route::prefix('about')->as('about.')->controller(AboutController::class)->group(function () {
-                Route::get('index/', 'index')->name('index');
-                Route::get('create/', 'create')->name('create');
-                Route::post('store/', 'store')->name('store');
-                Route::get('edit/{id}', 'edit')->name('edit');
-                // Route::post('update/{id}', 'update')->name('update');
-                Route::post('destroy_all', 'destroyAll')->name('destroy.all');
-                Route::delete('destroy/{id}', 'destroy')->name('destroy');
-            });
 
-            Route::resource('points', PointAboutUsController::class);
-            Route::post('points/destroy_all', [PointAboutUsController::class, 'destroyAll'])->name('points.destroy.all');
         });
     }
 );

@@ -46,27 +46,6 @@
             </ul>
         </li>
 
-        <!-- Projects -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-folder"></i>
-                <div data-i18n="{{ __('sidebar.projects') }}"> {{ __('sidebar.projects') }}</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.projects.index') }}" class="menu-link">
-                        <i class="menu-icon ti ti-eye"></i>
-                        <div data-i18n="{{ __('sidebar.show_projects') }}">{{ __('sidebar.show_projects') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.projects.create') }}" class="menu-link">
-                        <i class="menu-icon ti ti-plus"></i>
-                        <div data-i18n="{{ __('sidebar.add_new_project') }}">{{ __('sidebar.add_new_project') }}</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
         <!-- AboutME -->
 
         <li class="menu-item">
@@ -87,12 +66,12 @@
                     <!-- Sub-menu for Experiences -->
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.experiences.create') }}" class="menu-link">
                                 <div data-i18n="Add Experience">Add Experience</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.experiences.index') }}" class="menu-link">
                                 <div data-i18n="View Experiences">View Experiences</div>
                             </a>
                         </li>
@@ -106,12 +85,12 @@
                     <!-- Sub-menu for Educations -->
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.educations.create') }}" class="menu-link">
                                 <div data-i18n="Add Education">Add Education</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.educations.index') }}" class="menu-link">
                                 <div data-i18n="View Educations">View Educations</div>
                             </a>
                         </li>
@@ -125,36 +104,41 @@
                     <!-- Sub-menu for Skills -->
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.skills.create') }}" class="menu-link">
                                 <div data-i18n="Add Skill">Add Skill</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('admin.skills.index') }}" class="menu-link">
                                 <div data-i18n="View Skills">View Skills</div>
                             </a>
                         </li>
                     </ul>
                 </li>
-            </ul>
-        </li>
-
-
-        <!-- About Us -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-building"></i>
-                <div data-i18n="{{ __('sidebar.about_us') }}">{{ __('sidebar.about_us') }}</div>
-            </a>
-            <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('admin.about.create') }}" class="menu-link">
-                        <i class="menu-icon ti ti-tasks"></i>
-                        <div data-i18n="{{ __('sidebar.add_about_us') }}">{{ __('sidebar.add_about_us') }}</div>
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon ti ti-cog"></i>
+                        <div data-i18n=" Achievements">My Achievements</div>
                     </a>
+                    <!-- Sub-menu for Skills -->
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.achievements.create') }}" class="menu-link">
+                                <div data-i18n="Add Achievement">Add Achievement</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.achievements.index') }}" class="menu-link">
+                                <div data-i18n="View Achievements">View Achievements</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
+
             </ul>
         </li>
+
 
         <!-- Contacts -->
         <li class="menu-item">

@@ -20,8 +20,7 @@ class PersonalInfoController extends Controller
 
     public function createOrUpdate(personalInfoRequest $request)
     {
-
-        $validatedData = $request->validated();
+         $validatedData = $request->validated();
         $checkPersonalInfo = PersonalInfo::first();
         $data = $request->except('image');
 

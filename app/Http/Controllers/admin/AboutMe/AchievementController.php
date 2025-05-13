@@ -4,12 +4,12 @@ namespace App\Http\Controllers\admin\AboutMe;
 
 use App\Helpers\MessageHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SkillRequest;
-use App\Models\Skill;
+use App\Http\Requests\AchievementRequest;
+use App\Models\Achievement;
 use App\Traits\UploadImages;
 use Illuminate\Http\Request;
 
-class SkillController extends Controller
+class AchievementController extends Controller
 {
     use UploadImages;
 
@@ -19,8 +19,8 @@ class SkillController extends Controller
         $defaultPerPage = 10;
         $perPage = request()->get('per_page', $defaultPerPage);
 
-        // Start building the query for Skill model
-        $query = Skill::query();
+        // Start building the query for Achievement model
+        $query = Achievement::query();
 
         // Apply search filter if 'search' parameter is present
         if (request()->has('search')) {
@@ -29,51 +29,51 @@ class SkillController extends Controller
         }
 
         // Paginate the filtered query based on perPage value
-        $skills = $query->paginate($perPage);
+        $achievements = $query->paginate($perPage);
 
-        return view('admin.aboutMe.skills.index', compact('skills'));
+        return view('admin.aboutMe.achievements.index', compact('achievements'));
     }
 
     public function create()
     {
-        return view('admin.aboutMe.skills.create');
+        return view('admin.aboutMe.achievements.create');
     }
 
-    public function store(SkillRequest $request)
+    public function store(AchievementRequest $request)
     {
         $validatedData = $request->validated();
 
 
-        $skill = Skill::create($validatedData);
+        $achievement = Achievement::create($validatedData);
 
 
         MessageHelper::getSuccessMessage();
         return back();
     }
-    // public function show(Skill $skill)
+    // public function show(Achievement $achievement)
     // {
-    //     return view('skills.show', compact('skill'));
+    //     return view('achievements.show', compact('achievement'));
     // }
 
-    public function edit(Skill $skill)
+    public function edit(Achievement $achievement)
     {
 
-        return view('admin.aboutMe.skills.edit', compact('skill'));
+        return view('admin.aboutMe.achievements.edit', compact('achievement'));
     }
-    public function update(SkillRequest $request, Skill $skill)
+    public function update(AchievementRequest $request, Achievement $achievement)
     {
         $validatedData = $request->validated();
 
 
 
-        $skill->update($validatedData);
+        $achievement->update($validatedData);
         MessageHelper::getUpdateMessage();
         return back();
      }
 
-    public function destroy(Skill $skill)
+    public function destroy(Achievement $achievement)
     {
-        $skill->delete();
+        $achievement->delete();
         MessageHelper::getDeleteMessage();
         return back();
     }
@@ -86,16 +86,15 @@ class SkillController extends Controller
         $delete = $request->delete_all_id;
         $delete_all = explode(',', $delete);
 
-        // Fetch the skills to be deleted
-        $skills = Skill::whereIn("id", $delete_all)->get();
+        // Fetch the achievements to be deleted
+        $achievements = Achievement::whereIn("id", $delete_all)->get();
 
-        // Delete the skills from the database
-        Skill::whereIn("id", $delete_all)->delete();
+        // Delete the achievements from the database
+        Achievement::whereIn("id", $delete_all)->delete();
 
         // Display a delete message
         MessageHelper::getDeleteMessage();
 
         return back();
     }
-
 }

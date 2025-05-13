@@ -90,16 +90,36 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        @if (isset($settings) && $settings->image_url)
-                            <img src="{{ $settings->image_url ?? '' }}" class="icon-preview" alt="image">
+                        @if (isset($personalInfo) && $personalInfo->image_url)
+                            <img src="{{ $personalInfo->image_url ?? '' }}" class="icon-preview" alt="image">
                         @endif
                     </div>
 
+                    <div class="col-md-6 form-group">
+                        <div>
+                            <label class="form-label" for="formFile">Upload Cv</label>
+                            <small class="text-muted">Recommended size: </small>
+                            <input class="form-control" type="file" name="cv" id="formFile" />
+                            @error('cv')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        @if (isset($personalInfo) && $personalInfo->cv_url)
+                            <img src="{{ $personalInfo->cv_url ?? '' }}" class="icon-preview" alt="image">
+                        @endif
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label" for="multicol-Website-Name-Arabic">Mini Description</label>
+                        <textarea id="multicol-Website-Name-Arabic" name="mini_description" class="form-control" rows="3">{{ old('mini_description', isset($personalInfo) ? $personalInfo->mini_description : '') }}</textarea>
+                        @error('mini_description')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-Website Name Arabic">First Name</label>
                         <input type="text" id="multicol-Website-Name-Arabic" name="first_name" class="form-control"
-                            value="{{ old('first_name', isset($settings) ? $settings->first_name : '') }}" />
+                            value="{{ old('first_name', isset($personalInfo) ? $personalInfo->first_name : '') }}" />
                         @error('first_name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -108,7 +128,7 @@
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-Website Name Arabic">Last Name</label>
                         <input type="text" id="multicol-Website-Name-Arabic" name="last_name" class="form-control"
-                            value="{{ old('last_name', isset($settings) ? $settings->last_name : '') }}" />
+                            value="{{ old('last_name', isset($personalInfo) ? $personalInfo->last_name : '') }}" />
                         @error('last_name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -118,10 +138,10 @@
 
                     <!-- Date Field -->
                     <div class="col-md-6">
-                        <label class="form-label" for="date">{{ __('projects.Date') }}</label>
-                        <input type="date" id="date" name="date" class="form-control"
-                            value="{{ old('date') }}" />
-                        @error('date')
+                        <label class="form-label" for="date_of_birth">Date Of birth</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control"
+                            value="{{ old('date_of_birth') }}" />
+                        @error('date_of_birth')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -129,7 +149,7 @@
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-Website Nationality">Nationality</label>
                         <input type="text" id="multicol-Website-Nationality" name="nationality" class="form-control"
-                            value="{{ old('nationality', isset($settings) ? $settings->nationality : '') }}" />
+                            value="{{ old('nationality', isset($personalInfo) ? $personalInfo->nationality : '') }}" />
                         @error('nationality')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -139,11 +159,11 @@
                         <label class="form-label" for="multicol-Website-Freelance">Freelance</label>
                         <select id="multicol-Website-Freelance" name="freelance" class="form-control">
                             <option value="">Select Option</option>
-                            <option value="Yes"
-                                {{ old('freelance', isset($settings) ? $settings->freelance : '') == 'Yes' ? 'selected' : '' }}>
+                            <option value="yes"
+                                {{ old('freelance', isset($personalInfo) ? $personalInfo->freelance : '') == 'yes' ? 'selected' : '' }}>
                                 Yes</option>
-                            <option value="No"
-                                {{ old('freelance', isset($settings) ? $settings->freelance : '') == 'No' ? 'selected' : '' }}>
+                            <option value="no"
+                                {{ old('freelance', isset($personalInfo) ? $personalInfo->freelance : '') == 'no' ? 'selected' : '' }}>
                                 No</option>
                         </select>
                         @error('freelance')
@@ -153,7 +173,7 @@
                     <div class="col-md-6">
                         <label class="form-label" for="multicol-Website Phone">Phone</label>
                         <input type="text" id="multicol-Website Phone" name="phone" class="form-control"
-                            value="{{ old('phone', isset($settings) ? $settings->phone : '') }}" />
+                            value="{{ old('phone', isset($personalInfo) ? $personalInfo->phone : '') }}" />
                         @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -163,7 +183,7 @@
                         <label class="form-label" for="multicol-email">Email</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-email" name="email" class="form-control"
-                                value="{{ old('email', isset($settings) ? $settings->email : '') }}" aria-label=""
+                                value="{{ old('email', isset($personalInfo) ? $personalInfo->email : '') }}" aria-label=""
                                 aria-describedby="multicol-email2" />
                         </div>
                         @error('email')
@@ -175,7 +195,7 @@
                         <label class="form-label" for="multicol-address">address</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-address" name="address" class="form-control"
-                                value="{{ old('address', isset($settings) ? $settings->address : '') }}" aria-label=""
+                                value="{{ old('address', isset($personalInfo) ? $personalInfo->address : '') }}" aria-label=""
                                 aria-describedby="multicol-address2" />
                         </div>
                         @error('address')
@@ -188,7 +208,7 @@
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-spoken_languages" name="spoken_languages"
                                 class="form-control"
-                                value="{{ old('spoken_languages', isset($settings) ? $settings->spoken_languages : '') }}"
+                                value="{{ old('spoken_languages', isset($personalInfo) ? $personalInfo->spoken_languages : '') }}"
                                 aria-label="" aria-describedby="multicol-spoken_languages2" />
                         </div>
                         @error('spoken_languages')
@@ -200,7 +220,7 @@
                         <label class="form-label" for="multicol-linkedin">LinkedIn</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-linkedin" name="linkedin" class="form-control"
-                                value="{{ old('linkedin', isset($settings) ? $settings->linkedin : '') }}" aria-label=""
+                                value="{{ old('linkedin', isset($personalInfo) ? $personalInfo->linkedin : '') }}" aria-label=""
                                 aria-describedby="multicol-linkedin2" />
                         </div>
                         @error('linkedin')
@@ -208,81 +228,6 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6 form-group">
-                        <div>
-                            <label class="form-label" for="formFile">Upload Cv</label>
-                            <small class="text-muted">Recommended size: </small>
-                            <input class="form-control" type="file" name="cv" id="formFile" />
-                            @error('cv')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @if (isset($settings) && $settings->cv_url)
-                            <img src="{{ $settings->cv_url ?? '' }}" class="icon-preview" alt="image">
-                        @endif
-                    </div>
-
-                    <br><br>
-                    <h5 class="text-center">{{ __('settings.Videos & Icons & Logo') }}</h5>
-
-                    <div class="col-md-6 form-group">
-                        <div>
-                            <label class="form-label" for="formFile">{{ __('settings.logo') }}</label>
-                            <input class="form-control" type="file" name="logo" id="formFile" />
-                            @error('logo')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @if (isset($settings) && $settings->logo_url)
-                            <img src="{{ $settings->logo_url }}" class="icon-preview" alt="logo">
-                        @endif
-                    </div>
-
-
-                    <div class="col-md-6 form-group">
-                        <div>
-                            <label class="form-label" for="formFile">{{ __('settings.header icon') }}</label>
-                            <small class="text-muted">Recommended size: 512px × 512px</small>
-                            <input class="form-control" type="file" name="header_icon" id="formFile" />
-
-                            @error('header_icon')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @if (isset($settings) && $settings->header_icon_url)
-                            <img src="{{ $settings->header_icon_url ?? '' }}" class="icon-preview" alt="header_icon">
-                        @endif
-                    </div>
-
-
-
-                    <div class="col-md-6 form-group">
-                        <div>
-                            <label class="form-label" for="formFile">{{ __('settings.footer icon') }}</label>
-                            <small class="text-muted">Recommended size: 512px × 512px</small>
-                            <input class="form-control" type="file" name="footer_icon" id="formFile" />
-                            @error('footer_icon')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @if (isset($settings) && $settings->footer_icon_url)
-                            <img src="{{ $settings->footer_icon_url ?? '' }}" class="icon-preview" alt="footer_icon">
-                        @endif
-                    </div>
-
-                    {{-- <div class="col-md-6 form-group">
-                        <div>
-                            <label class="form-label" for="video">{{ __('settings.video') }}</label>
-                            <input class="form-control" type="file" name="video" id="video" />
-                            @error('video')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @if (isset($settings) && $settings->video_url)
-                            <img src="{{ $settings->video_url ?? '' }}" class="icon-preview"
-                                alt="{{ __('settings.video') }}">
-                        @endif
-                    </div> --}}
                 </div>
                 <div class="pt-4">
                     <button type="submit" class="btn btn-success me-sm-3 me-1">{{ __('general.save') }}</button>
