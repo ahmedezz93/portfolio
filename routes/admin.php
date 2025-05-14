@@ -5,21 +5,11 @@ use App\Http\Controllers\admin\AboutMe\AchievementController;
 use App\Http\Controllers\admin\AboutMe\EducationController;
 use App\Http\Controllers\admin\AboutMe\ExperienceController;
 use App\Http\Controllers\admin\AboutMe\SkillController;
-use App\Http\Controllers\admin\ArticlesController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\ContactUsController;
-use App\Http\Controllers\admin\FaqsController;
-use App\Http\Controllers\admin\FaqSectionSectionsController;
 use App\Http\Controllers\admin\homeController;
-use App\Http\Controllers\admin\OurPartnersController;
-use App\Http\Controllers\admin\PointAboutUsController;
-use App\Http\Controllers\admin\ProjectInfoController;
-use App\Http\Controllers\admin\ProjectsController;
-use App\Http\Controllers\admin\SectionsFaqsController;
-use App\Http\Controllers\admin\ServicesController;
-use App\Http\Controllers\admin\ServicesDetailsController;
+use App\Http\Controllers\admin\MyPortfolio\ProjectController;
 use App\Http\Controllers\admin\SettingsController;
-use App\Http\Controllers\admin\TeamsController;
 use App\Http\Controllers\admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,6 +66,12 @@ Route::group(
             //achievements
             Route::resource('achievements', AchievementController::class);
             Route::post('achievements/destroy_all', [AchievementController::class, 'destroyAll'])->name('achievements.destroy.all');
+
+            //projects
+            Route::resource('projects', ProjectController::class);
+            Route::post('projects/destroy_all', [ProjectController::class, 'destroyAll'])->name('projects.destroy.all');
+
+
             Route::prefix('contacts')->as('contacts.')->controller(ContactUsController::class)->group(function () {
                 Route::get('index/', 'index')->name('index');
                 Route::post('destroy_all', 'destroyAll')->name('destroy.all');

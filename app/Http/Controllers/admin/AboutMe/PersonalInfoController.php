@@ -20,7 +20,7 @@ class PersonalInfoController extends Controller
 
     public function createOrUpdate(personalInfoRequest $request)
     {
-         $validatedData = $request->validated();
+        $validatedData = $request->validated();
         $checkPersonalInfo = PersonalInfo::first();
         $data = $request->except('image');
 
@@ -33,7 +33,7 @@ class PersonalInfoController extends Controller
                 $this->deleteImagesOnServer('personalInfo', $checkPersonalInfo->image);
             }
         }
-                if ($request->hasFile('cv')) {
+        if ($request->hasFile('cv')) {
             // Upload the file and get the new filename
             $newCvFilename = $this->uploadImagesOnServer('personalInfo', $request->file('cv'));
             $data['cv'] = $newCvFilename;
@@ -48,5 +48,4 @@ class PersonalInfoController extends Controller
         MessageHelper::getSuccessMessage();
         return back();
     }
-
 }

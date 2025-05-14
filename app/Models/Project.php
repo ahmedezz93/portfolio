@@ -11,13 +11,12 @@ class Project extends Model
     use HasFactory , HasTranslations;
     protected $guarded = ['id'];
     protected $table = "projects";
-    public $translatable = ['name' ,'client' ,'category' ,'location' ,'description']; 
 
     public function getImageUrlAttribute()
     {
         if (!$this->image) {
             return asset('assets/icons/aaa.png');
         }
-        return asset('storage/images/projects/' . $this->image);
+        return asset('storage/images/myPortfolio/projects/'. $this->image);
     }
 }

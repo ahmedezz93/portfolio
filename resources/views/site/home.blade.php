@@ -424,7 +424,7 @@
 					<!-- Fun Facts Ends -->
                 </div>
                 <!-- End Expanded About -->
-                <img alt="close" src="images/close-button.png" class="bl-icon-close" />
+                <img alt="close" src="{{ asset('site/assets/images/close-button.png') }}" class="bl-icon-close" />
             </section>
             <!-- About Ends -->
             <!-- Portfolio Starts -->
@@ -534,7 +534,7 @@
                     </div>
                 </div>
                 <!-- Portfolio Expanded Ends -->
-                <img alt="close" src="images/close-button.png" class="bl-icon-close" />
+                <img alt="close" src="{{ asset('site/assets/images/close-button.png') }}" class="bl-icon-close" />
             </section>
             <!-- Portfolio Section Ends -->
             <!-- Contact Section Starts -->
@@ -601,12 +601,16 @@
 										If you have any suggestion, project or even you want to say Hello.. Please fill out the form below and I will reply you shortly.
 									</p>
 								</div>
-                                <form class="contactform" method="post" action="https://slimhamdi.net/moscow/demos/php/process-form.php">
+                                <form class="contactform" action="{{ route('site.contactUs.sendMail') }}" method="post" action="https://slimhamdi.net/moscow/demos/php/process-form.php">
                                     <!-- Name Field Starts -->
                                     <div class="input-field second-font">
                                         <i class="fa fa-user prefix"></i>
                                         <input id="name" name="name" type="text" class="validate" required>
-                                        <label class="font-weight-400" for="name">Your Name</label>
+                                        <label class="font-weight-400" for="name">Your Name</label>\
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+
+                                        @enderror
                                     </div>
                                     <!-- Name Field Ends -->
                                     <!-- Email Field Starts -->
@@ -614,13 +618,28 @@
                                         <i class="fa fa-envelope prefix"></i>
                                         <input id="email" type="email" name="email" class="validate" required>
                                         <label for="email">Your Email</label>
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+                                                                        <div class="input-field second-font">
+                                        <i class="fa fa-envelope prefix"></i>
+                                        <input id="phone" type="phone" name="phone" class="validate" required>
+                                        <label for="phone">Your Phone</label>
+                                        @error('phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
                                     <!-- Email Field Ends -->
                                     <!-- Comment Textarea Starts -->
                                     <div class="input-field second-font">
                                         <i class="fa fa-comments prefix"></i>
-                                        <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
-                                        <label for="comment">Your Comment</label>
+                                        <textarea id="comment" name="message" class="materialize-textarea" required></textarea>
+                                        <label for="comment">Your Message</label>
+                                        @error('message')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <!-- Comment Textarea Ends -->
 									<!-- Submit Form Button Starts -->
@@ -640,7 +659,7 @@
                     </div>
                 </div>
                 <!-- Expanded Contact Ends -->
-                <img alt="close" src="images/close-button.png" class="bl-icon-close" />
+                <img alt="close" src="{{ asset('site/assets/images/close-button.png') }}" class="bl-icon-close" />
             </section>
             <!-- Contact Section Ends -->
             <!-- Portfolio Panel Items Starts -->
@@ -876,7 +895,7 @@
                     <span class="control-button bl-previous-work"><i class="fa fa-angle-left"></i></span>
                     <!-- Previous Work Icon Ends -->
                     <!-- Close Work Icon Starts -->
-					<img alt="close" src="images/close-button.png" class="control-button bl-icon-close" />
+					<img alt="close" src="{{ asset('site/assets/images/close-button.png') }}" class="control-button bl-icon-close" />
                     <!-- Close Work Icon Ends -->
                     <!-- Next Work Icon Starts -->
                     <span class="control-button bl-next-work"><i class="fa fa-angle-right"></i></span>

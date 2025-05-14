@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\admin\AboutMe\PersonalInfoController;
+use App\Http\Controllers\site\ContactUsController;
 use App\Http\Controllers\site\HomeController;
-use App\Http\Controllers\site\TeamsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,15 +24,11 @@ Route::group(
         Route::get('/', HomeController::class)->name('home');
 
         Route::prefix('site')->group(function () {
-            Route::prefix('ourTeam')->name('ourTeam.')->controller(TeamsController::class)->group(function () {
+                        Route::prefix('contactUs')->name('contactUs.')->controller(ContactUsController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::get('/createOrUpdate/{id}', 'createOrUpdate')->name('createOrUpdate');
+                Route::post('sendMail', 'sendMail')->name('sendMail');
             });
 
-            Route::prefix('personalInfo')->name('personalInfo.')->controller(PersonalInfoController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::post('/createOrUpdate', 'createOrUpdate')->name('createOrUpdate');
-            });
         });
     }
 );

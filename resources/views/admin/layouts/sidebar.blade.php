@@ -139,6 +139,35 @@
             </ul>
         </li>
 
+        <!-- myPortfolio -->
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-folder"></i>
+                <div data-i18n="My Portfolio"> My Portfolio</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon ti ti-eye"></i>
+                        <div data-i18n="Projects">Projects</div>
+                    </a>
+                    <!-- Sub-menu for Projects -->
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.projects.create') }}" class="menu-link">
+                                <div data-i18n="Add Project">Add Project</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.projects.index') }}" class="menu-link">
+                                <div data-i18n="View Projects">View Projects</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
 
         <!-- Contacts -->
         <li class="menu-item">
