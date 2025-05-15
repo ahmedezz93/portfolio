@@ -21,7 +21,6 @@ class ContactUsController extends Controller
     }
     public function sendMail(Request $request)
     {
-
         // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
@@ -33,7 +32,7 @@ class ContactUsController extends Controller
 
         // Prepare email details
         $details = [
-            'name' => $request->input('first_name'),
+            'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'message' => $request->input('message'),

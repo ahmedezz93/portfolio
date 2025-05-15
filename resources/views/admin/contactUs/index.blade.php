@@ -35,15 +35,16 @@
         <div class="row gy-3 mb-3">
             <div class="col-lg-4">
                 <form action="{{ route('admin.contacts.index') }}" method="get" class="d-flex align-items-center">
-                    <input type="text" name="search" class="form-control" placeholder="{{ __('contact.search_placeholder') }}"
-                           style="margin-right: 10px;" />
+                    <input type="text" name="search" class="form-control"
+                        placeholder="{{ __('contact.search_placeholder') }}" style="margin-right: 10px;" />
                     <button type="submit" class="btn btn-warning">{{ __('contact.search') }}</button>
                 </form>
             </div>
             <div class="col-lg-4">
-                <form id="commentForm" method="get" action="{{ route('admin.contacts.index') }}" class="d-flex align-items-center">
+                <form id="commentForm" method="get" action="{{ route('admin.contacts.index') }}"
+                    class="d-flex align-items-center">
                     <select id="perPageSelect" name="per_page" class="form-select" style="margin-right: 10px;"
-                            onchange="this.form.submit()">
+                        onchange="this.form.submit()">
                         <option value="">{{ __('contact.items_per_page') }}</option>
                         <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
                         <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
@@ -62,10 +63,12 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><input name="select_all" class="form-check-input" type="checkbox" onclick="CheckAll('box1', this)" /></th>
+                        <th><input name="select_all" class="form-check-input" type="checkbox"
+                                onclick="CheckAll('box1', this)" /></th>
                         <th>#</th>
                         <th class="text-center">{{ __('contact.name') }}</th>
                         <th class="text-center">{{ __('contact.email') }}</th>
+                        <th class="text-center">{{ __('teams.phone') }}</th>
                         <th class="text-center">{{ __('contact.message') }}</th>
                         <th class="text-center">{{ __('contact.received_at') }}</th>
                         <th class="d-flex justify-content-center">{{ __('contact.actions') }}</th>
@@ -80,9 +83,10 @@
                                 </div>
                             </td>
                             <td>{{ ($contacts->currentPage() - 1) * $contacts->perPage() + $loop->iteration }}</td>
-                            <td class="text-center">{{ $contact->first_name }} {{ $contact->second_name }}</td>
+                            <td class="text-center">{{ $contact->name }} </td>
                             <td class="text-center">{{ $contact->email }}</td>
-                            <td class="custom-td">{{ Str::limit($contact->message, 50) }}</td>
+                            <td class="text-center">{{ $contact->phone }}</td>
+                            <td class="custom-td">{{ $contact->message }}</td>
                             <td class="text-center">{{ $contact->created_at->format('Y-m-d') }}</td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
@@ -93,12 +97,14 @@
                                 </div>
                             </td>
                         </tr>
-                        <div class="modal fade" id="deleteContactModal{{ $contact->id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="deleteContactModal{{ $contact->id }}" tabindex="-1"
+                            aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">{{ __('contact.delete_message') }}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <p>{{ __('contact.delete_confirmation') }}</p>
@@ -107,9 +113,11 @@
                                         <form method="POST" action="{{ route('admin.contacts.destroy', $contact->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-success">{{ __('contact.confirm_delete') }}</button>
+                                            <button type="submit"
+                                                class="btn btn-success">{{ __('contact.confirm_delete') }}</button>
                                         </form>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('contact.cancel') }}</button>
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">{{ __('contact.cancel') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -132,4 +140,31 @@
             });
         });
     </script>
+
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            // Event handler for delete button
+            $('.btn_delete_service').click(function() {
+                // Get project id from data-id attribute
+                var serviceId = $(this).data('id');
+
+                // Update form action with project ID
+                var deleteUrl = "{{ route('admin.contacts.destroy', ':id') }}";
+                deleteUrl = deleteUrl.replace(':id', serviceId);
+
+                $('#deleteServiceForm').attr('action', deleteUrl);
+
+                // Show the modal
+                $('#deleteServiceModal').modal('show');
+            });
+        });
+    </script>
+    <script>
+        var deleteRoute = "{{ route('admin.contacts.destroy.all') }}";
+    </script>
+
+@endsection
+
 @endsection

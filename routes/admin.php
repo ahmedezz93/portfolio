@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AboutMe\AchievementController;
 use App\Http\Controllers\admin\AboutMe\EducationController;
 use App\Http\Controllers\admin\AboutMe\ExperienceController;
+use App\Http\Controllers\admin\AboutMe\PersonalInfoController;
 use App\Http\Controllers\admin\AboutMe\SkillController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\ContactUsController;
@@ -46,7 +47,8 @@ Route::group(
                 Route::get('create', [SettingsController::class, 'create'])->name('create');
                 Route::post('store', [SettingsController::class, 'store'])->name('store');
             });
-
+            Route::get('accountSetting', [AuthController::class, 'accountSetting'])->name('accountSetting');
+            Route::post('update-account-setting', [AuthController::class, 'updateAccountSetting'])->name('account.setting.update');
             //home
             Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
                 Route::get('create', [homeController::class, 'create'])->name('create');
@@ -70,6 +72,10 @@ Route::group(
             //projects
             Route::resource('projects', ProjectController::class);
             Route::post('projects/destroy_all', [ProjectController::class, 'destroyAll'])->name('projects.destroy.all');
+            //personal info
+            Route::resource('personalInfo', PersonalInfoController::class);
+            Route::post('personalInfo/createOrUpdate', [homeController::class, 'createOrUpdate'])->name('personalInfo.createOrUpdate');
+            Route::post('personalInfo/destroy_all', [ProjectController::class, 'destroyAll'])->name('personalInfo.destroy.all');
 
 
             Route::prefix('contacts')->as('contacts.')->controller(ContactUsController::class)->group(function () {
@@ -77,9 +83,6 @@ Route::group(
                 Route::post('destroy_all', 'destroyAll')->name('destroy.all');
                 Route::delete('destroy/{id}', 'destroy')->name('destroy');
             });
-
-
-
         });
     }
 );

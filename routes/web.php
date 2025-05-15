@@ -24,11 +24,10 @@ Route::group(
         Route::get('/', HomeController::class)->name('home');
 
         Route::prefix('site')->group(function () {
-                        Route::prefix('contactUs')->name('contactUs.')->controller(ContactUsController::class)->group(function () {
+            Route::prefix('contactUs')->name('contactUs.')->controller(ContactUsController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('sendMail', 'sendMail')->name('sendMail');
             });
-
         });
     }
 );

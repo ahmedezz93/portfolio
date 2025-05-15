@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 255); // اسم الشخص
-            $table->string('second_name', 255); // اسم الشخص
-            $table->string('email'); // بريد إلكتروني
-            $table->text('message'); // نص الرسالة
+            $table->string('name', 255);
+            $table->string('email');
+            $table->text('message'); 
             $table->string('phone');
             $table->timestamps();
         });

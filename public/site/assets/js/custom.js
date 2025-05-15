@@ -1,30 +1,30 @@
 (function($) {
 
     "use strict";
-	
+
     $(document).ready(function() {
-		
+
 		// PRELOADER
         $("body").toggleClass("loaded");
         setTimeout(function() {
             $("body").addClass("loaded");
         }, 3000);
-		
+
 		// PORTFOLIO DIRECTION AWARE HOVER EFFECT
 		var item = $("#bl-work-items>div");
 		var elementsLength = item.length;
 		for (var i = 0; i < elementsLength; i++) {
 			$(item[i]).hoverdir();
 		}
-		
+
 		// TEXT ROTATOR
 		$("#selector").animatedHeadline({
              animationType: "clip"
         });
-		
+
 		// BOX LAYOUT
         Boxlayout.init();
-		
+
 		// REMOVE # FROM URL
 		$("a[href='#']").on("click", (function(e) {
 			e.preventDefault();
@@ -58,7 +58,7 @@
             fullWidth: true,
             indicators: true,
         });
-		
+
 		// RESUME CARDS ANIMATION
 		if ($(window).width() > 800) {
 			$(".resume-list-item, .resume-card").on("click", function() {
@@ -71,7 +71,7 @@
 				$(".resume-card").removeClass("front back up-front up-up-front back-back"), $(".resume-card-" + e).addClass("front"), $(".resume-card-" + t).addClass("back"), $(".resume-card-" + n).addClass("back-back"), $(".resume-card-" + i).addClass("back")
 			});
 		}
-		
+
     });
 
 })(jQuery);

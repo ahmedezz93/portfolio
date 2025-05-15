@@ -16,7 +16,7 @@
     <ul class="menu-inner py-1">
         <!-- Settings -->
         <li class="menu-item">
-            <a href="{{ route('admin.settings.create') }}" class="menu-link">
+            <a href="{{ route('admin.accountSetting') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-settings"></i>
                 <div data-i18n="{{ __('sidebar.settings') }}">{{ __('sidebar.settings') }}</div>
             </a>
@@ -54,7 +54,7 @@
                 <div data-i18n="About Me"> About Me</div>
             </a>
             <ul class="menu-sub">
-                <a href="{{ route('site.personalInfo.index') }}" class="menu-link">
+                <a href="{{ route('admin.personalInfo.index') }}" class="menu-link">
                     <div data-i18n="Personal Info">Personal Info</div>
                 </a>
 

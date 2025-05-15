@@ -76,7 +76,7 @@
             <h5 class="card-header1">Personal Info</h5>
         </div>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
-            <form class="card-body" action="{{route('site.personalInfo.createOrUpdate')}}" method="post" enctype="multipart/form-data">
+            <form class="card-body" action="{{route('admin.personalInfo.createOrUpdate')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">
 

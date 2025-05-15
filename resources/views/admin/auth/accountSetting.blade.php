@@ -76,7 +76,7 @@
             <h5 class="card-header1">{{ __('settings.Website Info') }}</h5>
         </div>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
-            <form class="card-body" action="{{ route('admin.settings.store') }}" method="post" enctype="multipart/form-data">
+            <form class="card-body" action="{{ route('admin.account.setting.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">
 
@@ -84,7 +84,7 @@
                         <label class="form-label" for="multicol-email">{{ __('settings.Email') }}</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-email" name="email" class="form-control"
-                                value="{{ old('email', isset($settings) ? $settings->email : '') }}" aria-label=""
+                                value="{{ old('email', isset($user) ? $user->email : '') }}" aria-label=""
                                 aria-describedby="multicol-email2" />
                         </div>
                         @error('email')
@@ -108,19 +108,6 @@
                         @error('password_confirmation')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <h5 class="text-center">{{ __('settings.Customize colors') }}</h5>
-                    <div class="col-md-6">
-                        <label class="form-label"> {{ __('settings.secondary_color') }}</label>
-                        <div class="input-group color-picker-wrapper">
-                            <input type="text" class="form-control color-input" id="primary_color" name="primary_color"
-                                value="{{ old('primary_color', $settings->primary_color ?? '') }}">
-                            <span class="input-group-text color-preview">
-                                <input type="color" class="form-control form-control-color color-picker"
-                                    value="{{ old('primary_color', $settings->primary_color ?? '') }}"
-                                    onchange="document.getElementById('primary_color').value = this.value">
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="pt-4" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
