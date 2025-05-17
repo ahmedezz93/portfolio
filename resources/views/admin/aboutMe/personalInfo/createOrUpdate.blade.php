@@ -33,8 +33,8 @@
         }
 
         /*
-        * style for input color
-        */
+            * style for input color
+            */
         .color-picker-wrapper {
             position: relative;
             overflow: hidden;
@@ -76,7 +76,8 @@
             <h5 class="card-header1">Personal Info</h5>
         </div>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
-            <form class="card-body" action="{{route('admin.personalInfo.createOrUpdate')}}" method="post" enctype="multipart/form-data">
+            <form class="card-body" action="{{ route('admin.personalInfo.createOrUpdate') }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">
 
@@ -134,13 +135,29 @@
                         @enderror
                     </div>
 
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-Website Specialization">Specialization</label>
+                        <input type="text" id="multicol-Specialization" name="specialization" class="form-control"
+                            value="{{ old('specialization', isset($personalInfo) ? $personalInfo->specialization : '') }}" />
+                        @error('specialization')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-Website Job Title">Job Title</label>
+                        <input type="text" id="multicol-Job Title" name="job_title" class="form-control"
+                            value="{{ old('job_title', isset($personalInfo) ? $personalInfo->job_title : '') }}" />
+                        @error('job_title')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <!-- Date Field -->
                     <div class="col-md-6">
                         <label class="form-label" for="date_of_birth">Date Of birth</label>
                         <input type="date" id="date_of_birth" name="date_of_birth" class="form-control"
-                            value="{{ old('date_of_birth') }}" />
+                            value="{{ old('date_of_birth', isset($personalInfo) ? $personalInfo->date_of_birth : '') }}" />
                         @error('date_of_birth')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -183,8 +200,8 @@
                         <label class="form-label" for="multicol-email">Email</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-email" name="email" class="form-control"
-                                value="{{ old('email', isset($personalInfo) ? $personalInfo->email : '') }}" aria-label=""
-                                aria-describedby="multicol-email2" />
+                                value="{{ old('email', isset($personalInfo) ? $personalInfo->email : '') }}"
+                                aria-label="" aria-describedby="multicol-email2" />
                         </div>
                         @error('email')
                             <div class="text-danger">{{ $message }}</div>
@@ -195,8 +212,8 @@
                         <label class="form-label" for="multicol-address">address</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-address" name="address" class="form-control"
-                                value="{{ old('address', isset($personalInfo) ? $personalInfo->address : '') }}" aria-label=""
-                                aria-describedby="multicol-address2" />
+                                value="{{ old('address', isset($personalInfo) ? $personalInfo->address : '') }}"
+                                aria-label="" aria-describedby="multicol-address2" />
                         </div>
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
@@ -220,8 +237,8 @@
                         <label class="form-label" for="multicol-linkedin">LinkedIn</label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="multicol-linkedin" name="linkedin" class="form-control"
-                                value="{{ old('linkedin', isset($personalInfo) ? $personalInfo->linkedin : '') }}" aria-label=""
-                                aria-describedby="multicol-linkedin2" />
+                                value="{{ old('linkedin', isset($personalInfo) ? $personalInfo->linkedin : '') }}"
+                                aria-label="" aria-describedby="multicol-linkedin2" />
                         </div>
                         @error('linkedin')
                             <div class="text-danger">{{ $message }}</div>

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonalInfo extends Model
 {
-    use HasFactory ;
-    protected $guarded=['id'];
-    protected $table="personal_infos";
+    use HasFactory;
+    protected $guarded = ['id'];
+    protected $table = "personal_infos";
 
     public function getImageUrlAttribute()
     {
@@ -19,7 +19,7 @@ class PersonalInfo extends Model
         return asset('storage/images/personalInfo/' . $this->image);
     }
 
-        public function getCvUrlAttribute()
+    public function getCvUrlAttribute()
     {
         if (!$this->cv) {
             return " ";
@@ -27,4 +27,8 @@ class PersonalInfo extends Model
         return asset('storage/images/personalInfo/' . $this->cv);
     }
 
+    public function getFreelanceStatusAttribute()
+    {
+        return $this->available === 'yes' ? 'Available' : 'Not Available';
+    }
 }

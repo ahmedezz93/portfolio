@@ -52,7 +52,7 @@ Route::group(
             //home
             Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
                 Route::get('create', [homeController::class, 'create'])->name('create');
-                Route::post('updateOrCreate', [homeController::class, 'updateOrCreate'])->name('updateOrCreate');
+                Route::post('createOrUpdate', [homeController::class, 'createOrUpdate'])->name('createOrUpdate');
             });
             //experiences
             Route::resource('experiences', ExperienceController::class);
@@ -66,16 +66,16 @@ Route::group(
             Route::resource('skills', SkillController::class);
             Route::post('skills/destroy_all', [SkillController::class, 'destroyAll'])->name('skills.destroy.all');
             //achievements
-            Route::resource('achievements', AchievementController::class);
-            Route::post('achievements/destroy_all', [AchievementController::class, 'destroyAll'])->name('achievements.destroy.all');
+                        Route::get('achievements/create', [AchievementController::class, 'create'])->name('achievements.create');
+            Route::post('achievements/createOrUpdate', [AchievementController::class, 'createOrUpdate'])->name('achievements.createOrUpdate');
 
             //projects
             Route::resource('projects', ProjectController::class);
             Route::post('projects/destroy_all', [ProjectController::class, 'destroyAll'])->name('projects.destroy.all');
             //personal info
             Route::resource('personalInfo', PersonalInfoController::class);
-            Route::post('personalInfo/createOrUpdate', [homeController::class, 'createOrUpdate'])->name('personalInfo.createOrUpdate');
-            Route::post('personalInfo/destroy_all', [ProjectController::class, 'destroyAll'])->name('personalInfo.destroy.all');
+            Route::post('personalInfo/createOrUpdate', [PersonalInfoController::class, 'createOrUpdate'])->name('personalInfo.createOrUpdate');
+            Route::post('personalInfo/destroy_all', [PersonalInfoController::class, 'destroyAll'])->name('personalInfo.destroy.all');
 
 
             Route::prefix('contacts')->as('contacts.')->controller(ContactUsController::class)->group(function () {

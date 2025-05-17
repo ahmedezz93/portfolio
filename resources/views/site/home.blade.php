@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Moscow - Personal Portfolio</title>
+    <title>{{ $personalInfo->first_name }} {{ $personalInfo->last_name }}- Personal Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 
@@ -120,25 +120,28 @@
         </div>
         <div id="bl-main" class="bl-main">
             <!-- Top Left Section Starts -->
-            <section class="topleft">
-                <div class="bl-box row valign-wrapper">
-                    <div class="row valign-wrapper mb-0">
-                        <div class="title-heading">
-                            <div class="selector uppercase" id="selector">
-                                <h3 class="ah-headline p-none m-none">
-                                    <span class="font-weight-400">Hi There ! I'm</span>
-                                    <span class="my-name">Ahmed Ezz</span>
-                                    <span class="ah-words-wrapper">
-                                        <b class="is-visible">backend developer</b>
-                                        <b>php - laravel</b>
-                                        {{-- <b>framework  laravel</b> --}}
-                                    </span>
-                                </h3>
+            @isset($personalInfo)
+                <section class="topleft">
+                    <div class="bl-box row valign-wrapper">
+                        <div class="row valign-wrapper mb-0">
+                            <div class="title-heading">
+                                <div class="selector uppercase" id="selector">
+                                    <h3 class="ah-headline p-none m-none">
+                                        <span class="font-weight-400">Hi There ! I'm</span>
+                                        <span class="my-name">{{ $personalInfo->first_name }}
+                                            {{ $personalInfo->last_name }}</span>
+                                        <span class="ah-words-wrapper">
+                                            <b class="is-visible">{{ $personalInfo->specialization }}</b>
+                                            <b>{{ $personalInfo->job_title }}</b>
+                                            {{-- <b>framework  laravel</b> --}}
+                                        </span>
+                                    </h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            @endisset
             <!-- Top Left Section Ends -->
             <!-- About Section Starts -->
             <section>
@@ -180,39 +183,42 @@
                             <div class="col s12 m8 l12 xl12 personal-info section-padding">
                                 <h6 class="uppercase"><i class="fa fa-user"></i> Personal Info</h6>
                                 <div class="col m12 l12 xl9 p-none">
-                                    <p class="second-font">As a Laravel developer, I am driven by my passion for
-                                        problem-solving, data structures, and design patterns. Continuously
-                                        honing my skills allows me to enhance my performance as a software engineer. I
-                                        am constantly motivated to apply my
-                                        analytical and programming abilities to tackle complex challenges.
+                                    <p class="second-font">{{ $personalInfo->mini_description }}
                                     </p>
                                 </div>
                                 <div class="col s12 m12 l6 p-none">
                                     <ul class="second-font list-1">
-                                        <li><span class="font-weight-700">First Name: </span>Ahmed</li>
-                                        <li><span class="font-weight-700">Last Name: </span>Ezz</li>
-                                        <li><span class="font-weight-700">Date of birth: </span>1 jan 1993 </li>
-                                        <li><span class="font-weight-700">Nationality: </span>Egyptian</li>
-                                        <li><span class="font-weight-700">Freelance: </span>Available</li>
+
+                                        <li><span class="font-weight-700">First Name:
+                                            </span>{{ $personalInfo->first_name }}</li>
+                                        <li><span class="font-weight-700">Last Name:
+                                            </span>{{ $personalInfo->last_name }}</li>
+                                        <li><span class="font-weight-700">Date of birth:
+                                            </span>{{ $personalInfo->date_of_birth }} </li>
+                                        <li><span class="font-weight-700">Nationality:
+                                            </span>{{ $personalInfo->nationality }}</li>
+                                        <li><span class="font-weight-700">Freelance:
+                                            </span>{{ $personalInfo->available == 'yes' ? 'Available' : 'Not Available' }}
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col s12 m12 l6 p-none">
                                     <ul class="second-font list-2">
-                                        <li><span class="font-weight-700">Phone: </span>+20 01009265348</li>
-                                        <li><span class="font-weight-700">Address: </span>Alsharqia,Lives In Cairo
+                                        <li><span class="font-weight-700">Phone: </span>{{ $personalInfo->phone }}
                                         </li>
-                                        <li><span class="font-weight-700">Email: </span>ahmedezz7424@gmail.com</li>
-                                        <li><span class="font-weight-700">Spoken Langages: </span>English - Arabic</li>
-                                        <li><span class="font-weight-700">Linkdin: </span><a
-                                                href="https://www.linkedin.com/in/ahmed-ezz-45115426b/">ahmedezz</a>
+                                        <li><span class="font-weight-700">Address: </span>{{ $personalInfo->address }}
+                                        </li>
+                                        <li><span class="font-weight-700">Email: </span>{{ $personalInfo->email }}
+                                        </li>
+                                        <li><span class="font-weight-700">Spoken Langages:
+                                            </span>{{ $personalInfo->spoken_languages }}</li>
+                                        <li><span class="font-weight-700">Linkedin: </span><a
+                                                href="{{ $personalInfo->linkedin }}">{{ $personalInfo->first_name }}{{ $personalInfo->last_name }}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <a href="#" class="btn font-weight-700">
+                                <a href="{{ $personalInfo->cv_url }}" class="btn font-weight-700" >
                                     Download Resume <i class="fa fa-file-pdf-o"></i>
-                                </a>
-                                <a href="blog-dark.html" class="btn btn-blog font-weight-700">
-                                    My Blog <i class="fa fa-edit"></i>
                                 </a>
                             </div>
                         </div>
@@ -256,38 +262,21 @@
                                             </div>
                                             <!-- Experience Header Title Ends -->
                                             <!-- Experience Content Starts -->
+
                                             <div class="resume-card-body experience">
                                                 <div class="resume-card-body-container second-font">
                                                     <!-- Single Experience Starts -->
+                                                    @foreach ($experiences as $experience )
                                                     <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Web Designer - </span>Envato</h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2015 -
-                                                            2018</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
+                                                        <h6 class="uppercase"><span>{{$experience->job_title}} - </span>{{$experience->company_name}} </h6>
+                                                        <span class="date"><i class="fa fa-calendar-o"></i> {{$experience->start_date}} -
+                                                            {{$experience->end_date}}</span>
+                                                        <p>{{$experience->description}}</p>
                                                     </div>
                                                     <!-- Single Experience Ends -->
                                                     <span class="separator"></span>
-                                                    <!-- Single Experience Starts -->
-                                                    <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Web Developer - </span>Google</h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2011 -
-                                                            2015</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
-                                                    </div>
-                                                    <!-- Single Experience Ends -->
-                                                    <span class="separator"></span>
-                                                    <!-- Single Experience Starts -->
-                                                    <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Community Manager - </span>Adobe
-                                                        </h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2007 -
-                                                            2011</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
-                                                    </div>
-                                                    <!-- Single Experience Ends -->
+
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <!-- Experience Content Starts -->
@@ -304,36 +293,17 @@
                                             <div class="resume-card-body education">
                                                 <div class="resume-card-body-container second-font">
                                                     <!-- Single Education Starts -->
+                                                    @foreach ($educations as $education )
                                                     <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Engineering Diploma - </span>Oxford
-                                                            University</h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2015 -
-                                                            2018</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
+                                                        <h6 class="uppercase"><span>{{$education->job_title}} - </span>{{$education->company_name}} </h6>
+                                                        <span class="date"><i class="fa fa-calendar-o"></i> {{$education->start_date}} -
+                                                            {{$education->end_date}}</span>
+                                                        <p>{{$education->description}}</p>
                                                     </div>
-                                                    <!-- Single Education Ends -->
+                                                    <!-- Single Experience Ends -->
                                                     <span class="separator"></span>
-                                                    <!-- Single Education Starts -->
-                                                    <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Masters Degree - </span>Paris
-                                                            University</h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2011 -
-                                                            2015</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
-                                                    </div>
-                                                    <!-- Single Education Ends -->
-                                                    <span class="separator"></span>
-                                                    <!-- Single Education Starts -->
-                                                    <div class="resume-content">
-                                                        <h6 class="uppercase"><span>Bachelor Degree - </span>Berlin
-                                                            Higher Institute</h6>
-                                                        <span class="date"><i class="fa fa-calendar-o"></i> 2007 -
-                                                            2011</span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Phasellus pretium orci sit amet mi ullamcorper</p>
-                                                    </div>
+
+                                                    @endforeach
                                                     <!-- Single Education Ends -->
                                                 </div>
                                             </div>
@@ -346,140 +316,36 @@
                                                 <div class="resume-card-name"><i class="fa fa-star"></i> Skills</div>
                                             </div>
                                             <!-- Skills Header Title Starts -->
-                                            <div class="resume-card-body skills">
-                                                <div class="resume-card-body-container second-font">
-                                                    <div class="row">
-                                                        <!-- Skills Row Starts -->
-                                                        <div class="col s6">
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">html</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">javascript</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-half-empty"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">css</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-half-empty"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">php</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-o"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">jquery</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">angular js</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-o"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                        </div>
-                                                        <!-- Skills Row Ends -->
-                                                        <!-- Skills Row Starts -->
-                                                        <div class="col s6">
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">wordpress</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-half-empty"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">joomla</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-half-empty"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">magento</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">drupal</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">Adobe Photoshop</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                            <!-- Single Skills Starts -->
-                                                            <div class="resume-content">
-                                                                <h6 class="uppercase">Adobe illustrator</h6>
-                                                                <p><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star-half-empty"></i> <i
-                                                                        class="fa fa-star-o"></i></p>
-                                                            </div>
-                                                            <!-- Single Skills Ends -->
-                                                        </div>
-                                                        <!-- Skills Row Ends -->
-                                                    </div>
-                                                </div>
-                                            </div>
+@php
+    $skillsChunks = $skills->chunk(ceil($skills->count() / 2));
+@endphp
+
+<div class="resume-card-body skills">
+    <div class="resume-card-body-container second-font">
+        <div class="row">
+            @foreach ($skillsChunks as $chunk)
+                <div class="col s6">
+                    @foreach ($chunk as $skill)
+                        <div class="resume-content">
+                            <h6 class="uppercase">{{ $skill->name }}</h6>
+                            <p>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= floor($skill->rate))
+                                        <i class="fa fa-star"></i>
+                                    @elseif ($i - 0.5 == $skill->rate)
+                                        <i class="fa fa-star-half-empty"></i>
+                                    @else
+                                        <i class="fa fa-star-o"></i>
+                                    @endif
+                                @endfor
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
                                         </div>
                                         <!-- Skills Ends -->
                                     </div>
@@ -489,6 +355,7 @@
                         </div>
                     </div>
                     <!-- Resume Ends -->
+                    @isset($achievement)
                     <!-- Fun Facts Starts -->
                     <div class="container badges">
                         <div class="row">
@@ -496,7 +363,7 @@
                             <div class="col s12 m4 l4 center-align">
                                 <h3>
                                     <i class="fa fa-briefcase"></i>
-                                    <span class="font-weight-900">4+</span>
+                                    <span class="font-weight-900">{{$achievement->years_of_experience}}+</span>
                                 </h3>
                                 <h6 class="uppercase font-weight-700">Years Experience</h6>
                             </div>
@@ -505,7 +372,7 @@
                             <div class="col s12 m4 l4 center-align">
                                 <h3>
                                     <i class="fa fa-handshake-o"></i>
-                                    <span class="font-weight-900">89+</span>
+                                    <span class="font-weight-900">{{$achievement->done_projects}}+</span>
                                 </h3>
                                 <h6 class="uppercase font-weight-700">Done Projects</h6>
                             </div>
@@ -514,7 +381,7 @@
                             <div class="col s12 m4 l4 center-align">
                                 <h3>
                                     <i class="fa fa-heart-o"></i>
-                                    <span class="font-weight-900">77+</span>
+                                    <span class="font-weight-900">{{$achievement->happy_customers}}+</span>
                                 </h3>
                                 <h6 class="uppercase font-weight-700">Happy customers</h6>
                             </div>
@@ -522,6 +389,8 @@
                         </div>
                     </div>
                     <!-- Fun Facts Ends -->
+
+                    @endisset
                 </div>
                 <!-- End Expanded About -->
                 <img alt="close" src="{{ asset('site/assets/images/close-button.png') }}"
@@ -802,7 +671,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Envato</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -840,7 +710,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Themeforest</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -873,7 +744,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Photodune</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -906,7 +778,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Videohive</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -936,7 +809,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Graphicriver</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -965,7 +839,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Activeden</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -994,7 +869,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">3D Ocean</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -1023,7 +899,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Audiojungle</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>
@@ -1053,7 +930,8 @@
                                 <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span
                                         class="font-weight-400 uppercase">Audiojungle</span></li>
                                 <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>:
-                                    <span class="font-weight-400 uppercase">02/11/2017</span></li>
+                                    <span class="font-weight-400 uppercase">02/11/2017</span>
+                                </li>
                                 <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date
                                     </span>: <span class="font-weight-400 uppercase">02/08/2018</span></li>
                                 <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span>

@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->string('image')->nullable();
             $table->string('cv')->nullable();
+            $table->string('job_title')->nullable();
+            $table->string('specialization')->nullable();
             $table->timestamps();
         });
     }

@@ -37,6 +37,8 @@ class personalInfoRequest extends FormRequest
             'linkedin' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'cv' => 'nullable|file|mimes:pdf,doc,docx|',
+            'job_title' => 'required|string|max:255',
+            'specialization' => 'required|string|max:255',
         ];
     }
 

@@ -10,7 +10,6 @@
         <div class="alert alert-info" role="alert">
             <h5 class="card-header1">Edit Skill</h5>
         </div>
-
         <form class="card-body" action="{{ route('admin.skills.update',$skill->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')

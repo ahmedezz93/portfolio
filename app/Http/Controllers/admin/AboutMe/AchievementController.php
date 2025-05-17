@@ -14,63 +14,29 @@ class AchievementController extends Controller
     use UploadImages;
 
 
-    public function index()
-    {
-        $defaultPerPage = 10;
-        $perPage = request()->get('per_page', $defaultPerPage);
-
-        // Start building the query for Achievement model
-        $query = Achievement::query();
-
-        // Apply search filter if 'search' parameter is present
-        if (request()->has('search')) {
-            $search = request('search');
-            $query->where('name', 'like', '%' . $search . '%');
-        }
-
-        // Paginate the filtered query based on perPage value
-        $achievements = $query->paginate($perPage);
-
-        return view('admin.aboutMe.achievements.index', compact('achievements'));
-    }
-
     public function create()
     {
-        return view('admin.aboutMe.achievements.create');
+        $achievement = Achievement::first();
+        return view('admin.aboutMe.achievements.createOrUpdate', compact('achievement'));
     }
 
-    public function store(AchievementRequest $request)
+    public function createOrUpdate(AchievementRequest $request)
     {
         $validatedData = $request->validated();
-
-
-        $achievement = Achievement::create($validatedData);
-
-
+        Achievement::updateOrCreate([], $validatedData);
         MessageHelper::getSuccessMessage();
         return back();
     }
-    // public function show(Achievement $achievement)
-    // {
-    //     return view('achievements.show', compact('achievement'));
-    // }
+    public function show(Achievement $achievement)
+    {
+        return view('achievements.show', compact('achievement'));
+    }
 
     public function edit(Achievement $achievement)
     {
 
         return view('admin.aboutMe.achievements.edit', compact('achievement'));
     }
-    public function update(AchievementRequest $request, Achievement $achievement)
-    {
-        $validatedData = $request->validated();
-
-
-
-        $achievement->update($validatedData);
-        MessageHelper::getUpdateMessage();
-        return back();
-     }
-
     public function destroy(Achievement $achievement)
     {
         $achievement->delete();

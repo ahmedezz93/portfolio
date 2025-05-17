@@ -18,7 +18,7 @@
         <li class="menu-item">
             <a href="{{ route('admin.accountSetting') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-settings"></i>
-                <div data-i18n="{{ __('sidebar.settings') }}">{{ __('sidebar.settings') }}</div>
+                <div data-i18n="Account Setting">Account Setting</div>
             </a>
         </li>
 
@@ -116,25 +116,11 @@
                     </ul>
                 </li>
                 <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon ti ti-cog"></i>
-                        <div data-i18n=" Achievements">My Achievements</div>
+                    <a href="{{ route('admin.achievements.create') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-achievements"></i>
+                        <div data-i18n="My Achievements">My Achievements</div>
                     </a>
-                    <!-- Sub-menu for Skills -->
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('admin.achievements.create') }}" class="menu-link">
-                                <div data-i18n="Add Achievement">Add Achievement</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{{ route('admin.achievements.index') }}" class="menu-link">
-                                <div data-i18n="View Achievements">View Achievements</div>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-
 
             </ul>
         </li>

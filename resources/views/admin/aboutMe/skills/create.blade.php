@@ -8,37 +8,39 @@
 @section('content')
     <div class="card mb-4">
         <div class="alert alert-info" role="alert">
-            <h5 class="card-header1">Skill</h5>
+            <h5 class="card-header1">Create Or Update Skill</h5>
         </div>
 
-        <form class="card-body" action="{{ route('admin.skills.store') }}" method="post" enctype="multipart/form-data">
+        <form class="card-body" action="{{ route('admin.skills.storeP',$skill->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row g-3">
 
                 <!-- Name Field -->
                 <div class="col-md-6">
-                    <label class="form-label" for="project-name">Name</label>
-                    <input type="text" id="project-name" name="name" class="form-control"
-                        value="{{ old('name') }}" />
+                    <label class="form-label" for="skill-name">Name</label>
+                    <input type="text" id="skill-name" name="name" class="form-control" value="{{ old('name',$skill->name) }}" />
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="col-md-6">
-                    <label class="form-label" for="project-rate">Rate</label>
-                    <select id="project-rate" name="rate" class="form-control">
-                        <option value="">اختر التقييم</option>
+                    <label class="form-label" for="skill-rate">Rate</label>
+                    <select id="skill-rate" name="rate" class="form-control">
+                        <option value="">Choose Rate</option>
                         @for ($i = 1; $i <= 5; $i++)
-                            <option value="{{ $i }}" {{ old('rate') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            <option value="{{ $i }}"
+                                {{ (old('rate') ?? $skill->rate) == $i ? 'selected' : '' }}>
+                                {{ $i }}
+                            </option>
                         @endfor
                     </select>
                     @error('rate')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
-            </div>
+                            </div>
 
 
             <!-- Submit and Reset Buttons -->

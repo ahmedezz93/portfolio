@@ -8,6 +8,7 @@ use App\Http\Requests\personalInfoRequest;
 use App\Models\PersonalInfo;
 use App\Traits\UploadImages;
 use Illuminate\Http\Request;
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class PersonalInfoController extends Controller
 {
@@ -26,7 +27,7 @@ class PersonalInfoController extends Controller
 
         if ($request->hasFile('image')) {
             // Upload the file and get the new filename
-            $newLogoFilename = $this->uploadImagesOnServer('personalInfo', $request->file('image'));
+            $newLogoFilename = $this->uploadImageOnServer('personalInfo', $request->file('image'));
             $data['image'] = $newLogoFilename;
 
             if ($checkPersonalInfo && $checkPersonalInfo->image != $newLogoFilename) {
@@ -42,8 +43,6 @@ class PersonalInfoController extends Controller
                 $this->deleteImagesOnServer('personalInfo', $checkPersonalInfo->cv);
             }
         }
-
-
         PersonalInfo::updateOrCreate([], $data);
         MessageHelper::getSuccessMessage();
         return back();
