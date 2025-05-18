@@ -26,6 +26,7 @@ class HomeController extends Controller
         $educations=Education::get();
         $skills=Skill::get();
         $achievement=Achievement::first();
-        return view('site.home',compact('personalInfo','experiences','educations','skills','achievement'));
+        $projects=Project::get();
+        return view('site.home',compact('personalInfo','experiences','educations','skills','achievement','projects'));
     }
 }

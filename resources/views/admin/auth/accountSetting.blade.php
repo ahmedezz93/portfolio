@@ -73,7 +73,7 @@
     <div class="card mb-4">
 
         <div class="alert alert-info" role="alert">
-            <h5 class="card-header1">{{ __('settings.Website Info') }}</h5>
+            <h5 class="card-header1">Account Setting</h5>
         </div>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
             <form class="card-body" action="{{ route('admin.account.setting.update') }}" method="post" enctype="multipart/form-data">

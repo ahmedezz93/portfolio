@@ -33,8 +33,8 @@
         }
 
         /*
-            * style for input color
-            */
+                * style for input color
+                */
         .color-picker-wrapper {
             position: relative;
             overflow: hidden;
@@ -244,6 +244,40 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-facebook">Facebook</label>
+                        <div class="input-group input-group-merge">
+                            <input type="text" id="multicol-facebook" name="facebook" class="form-control"
+                                value="{{ old('facebook', isset($personalInfo) ? $personalInfo->facebook : '') }}"
+                                aria-label="" aria-describedby="multicol-facebook2" />
+                        </div>
+                        @error('facebook')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-twitter">Twitter</label>
+                        <div class="input-group input-group-merge">
+                            <input type="text" id="multicol-twitter" name="twitter" class="form-control"
+                                value="{{ old('twitter', isset($personalInfo) ? $personalInfo->twitter : '') }}"
+                                aria-label="" aria-describedby="multicol-twitter2" />
+                        </div>
+                        @error('twitter')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="multicol-google_plus">Google Plus</label>
+                        <div class="input-group input-group-merge">
+                            <input type="text" id="multicol-google_plus" name="google_plus" class="form-control"
+                                value="{{ old('google_plus', isset($personalInfo) ? $personalInfo->google_plus : '') }}"
+                                aria-label="" aria-describedby="multicol-google_plus2" />
+                        </div>
+                        @error('google_plus')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
 
                 </div>
                 <div class="pt-4">
