@@ -43,7 +43,31 @@
 
     <!-- Template JS Files -->
     <script src="{{ asset('site/assets/js/modernizr.custom.js') }}"></script>
+    <Style>
+        input[type="tel"],
+        input[type="email"] {
+            color: #fff;
+            /* أو أي لون يناسب التصميم العام */
+        }
+.input-field input {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: none;
+}
 
+.input-field input:focus,
+.input-field input.valid {
+    border-bottom: 1px solid #fff !important;
+    box-shadow: none !important;
+    color: #fff !important;
+}
+
+.input-field input.invalid {
+    border-bottom: 1px solid #fff !important; /* بدل الأحمر */
+    box-shadow: none !important;
+}
+
+    </Style>
 </head>
 
 <body class="dark">
